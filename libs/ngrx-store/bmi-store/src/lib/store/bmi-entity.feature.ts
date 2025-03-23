@@ -1,6 +1,6 @@
-import { computed } from '@angular/core';
+import { computed, Signal } from '@angular/core';
 import { signalStoreFeature, type, withComputed } from '@ngrx/signals';
-import { entityConfig, withEntities } from '@ngrx/signals/entities';
+import { entityConfig } from '@ngrx/signals/entities';
 import { Bmi } from '@types-lib';
 import { filterListByServiceCodes, sortByCreatedDate } from './bmi-store.utils';
 
@@ -12,14 +12,13 @@ export const bmiItemConfig = entityConfig({
 
 export function withBmiItemEntity() {
   return signalStoreFeature(
-    { state: type<Bmi.BmiEntityState>() },
-    withEntities(bmiItemConfig),
+    { state: type<Bmi.BmiEntityState & { bmiItemEntities?: Bmi.EditableUserBMI[] }>() },
     withComputed(({ bmiListOptions: { filterBy, sort, pagination }, bmiItemEntities, bmiItemEntityMap }) => ({
       sortedAndFilteredBmiList: computed(() =>
-        filterListByServiceCodes(bmiItemEntities(), filterBy()).sort(sortByCreatedDate(sort())),
+        filterListByServiceCodes((bmiItemEntities as Signal<Bmi.EditableUserBMI[]>)(), filterBy()).sort(sortByCreatedDate(sort())),
       ),
-      itemBeingEdited: computed(() => bmiItemEntities().find(bmiItem => bmiItem.editMode)),
-      fullListLength: computed(() => bmiItemEntities().length),
+      itemBeingEdited: computed(() => (bmiItemEntities as Signal<Bmi.EditableUserBMI[]>)().find(bmiItem => bmiItem.editMode)),
+      fullListLength: computed(() => (bmiItemEntities as Signal<Bmi.EditableUserBMI[]>)().length),
     })),
   );
 }
