@@ -1,0 +1,17 @@
+@use 'common-classes';
+
+$default-text-color: var(--Grey-Base);
+
+:host {
+  overflow-y: auto;
+  display: flex;
+  flex: 1 1 0;
+}
+
+.dialog-content {
+  @include common-classes.text-body-regular;
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  color: $default-text-color;
+}

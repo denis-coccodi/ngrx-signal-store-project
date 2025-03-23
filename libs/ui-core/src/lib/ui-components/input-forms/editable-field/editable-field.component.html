@@ -1,0 +1,12 @@
+<div class="editable-field-container">
+  @if (!editMode) {
+  <div class="text-display-container" [ngStyle]="customStyles">
+    <div *ngIf="displayedValue" class="text-body-regular displayed-text">
+      {{ displayedValue }}
+    </div>
+    <ng-content select="[DisplayedValues]"></ng-content>
+  </div>
+  } @else {
+  <ng-content select="[fields]"></ng-content>
+  }
+</div>

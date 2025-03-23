@@ -1,0 +1,19 @@
+<header
+  class="dialog-header"
+  cdkDragHandle
+  cdkDrag
+  cdkDragRootElement=".cdk-overlay-pane"
+  [cdkDragConstrainPosition]="constrainPosition"
+  (cdkDragStarted)="onDragStarted($event)"
+>
+  <ng-content #dialogHeaderContent></ng-content>
+  <button
+    (click)="close()"
+    tabindex="0"
+    (keyup.enter)="close()"
+    class="button close-btn"
+    data-button-variant="header-icon"
+  >
+    <lib-icon name="X" class="close-icon" aria-hidden="false" aria-label="Close Dialog" fontIcon="close"></lib-icon>
+  </button>
+</header>

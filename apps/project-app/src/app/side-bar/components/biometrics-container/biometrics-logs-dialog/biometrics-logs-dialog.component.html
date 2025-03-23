@@ -1,0 +1,135 @@
+<lib-draggable-dialog-header class="dialog-header">
+  <div class="dialog-title text-large-regular">BMI Table</div>
+</lib-draggable-dialog-header>
+<lib-dialog-content>
+  <bmi-treatment-start [selectedWeightSystem]="this.weightSelectors().selected || 'METRIC'"></bmi-treatment-start>
+  <section class="dropdowns-container">
+    <lib-dropdown
+      [options]="dateSelectors()"
+      [selectedOption]="defaultDateSelector()"
+      (selectedOptionChange)="onSelectedDateSelectorChange($event)"
+    ></lib-dropdown>
+
+    <lib-dropdown
+      [options]="productTypeSelectors()"
+      [selectedOption]="defaultProductTypeSelector()"
+      (selectedOptionChange)="onSelectedProductTypeSelectorChange($event)"
+    ></lib-dropdown>
+  </section>
+  <div class="grid-container" [ngStyle]="{ 'grid-template-columns': gridTemplateColumns() }">
+    <header class="col-header table-cell large-padding-cell justify-center">Visit ID</header>
+    <header class="col-header table-cell">Date</header>
+    <header class="col-header table-cell">
+      <lib-table-header-selector [data]="heightSelectors()"></lib-table-header-selector>
+    </header>
+    <header class="col-header table-cell">
+      <lib-table-header-selector [data]="weightSelectors()"></lib-table-header-selector>
+    </header>
+    <header class="col-header table-cell">BMI</header>
+    <header class="col-header table-cell">Service</header>
+    <header class="col-header table-cell">Last Updated</header>
+    <header class="col-header table-cell" *ngIf="canEdit()">Actions</header>
+    @if (!bmiStore.isLoadBmiDataPending()) {
+      @for (bmiRow of displayedBMIs(); track bmiRow.order.mail_order_fill_request_id; let i = $index, e = $even) {
+        <div class="row-wrapper" [formGroup]="bmiForm()" [class.edit-mode]="bmiRow.editMode">
+          <div class="table-cell large-padding-cell">
+            <div
+              class="cell-content visit-id-cell"
+              [matTooltip]="'Fill ID: ' + (bmiRow?.order?.mail_order_fill_request_id || '')"
+              matTooltipPosition="right"
+            >
+              <lib-icon
+                name="ArrowsClockwise"
+                class="refill-icon"
+                *ngIf="bmiRow.order.is_refill"
+                aria-hidden="false"
+                aria-label="is refill"
+              ></lib-icon>
+              {{ bmiRow.order.order_id }}
+            </div>
+          </div>
+          <div class="table-cell">
+            <div class="cell-content">
+              {{ bmiRow.created | date: 'dd/MMM/y' }}
+            </div>
+          </div>
+          <div class="table-cell">
+            <lib-editable-field
+              [displayedValue]="getDisplayHeight(bmiRow.height)"
+              [editMode]="bmiRow.editMode"
+              [customStyles]="{ 'justify-content': 'center' }"
+            >
+              <div class="editable-field" fields>
+                @for (formCtrl of currentHeightControlsArray(); track formCtrl.suffix) {
+                  <lib-text-field [formCtrl]="formCtrl" [suffix]="formCtrl.suffix"></lib-text-field>
+                }
+              </div>
+            </lib-editable-field>
+          </div>
+          <div class="table-cell">
+            <lib-editable-field [displayedValue]="getDisplayWeight(bmiRow.weight)" [editMode]="bmiRow.editMode">
+              <pass-fail-display
+                *ngIf="bmiRow.five_percent_weight_check !== undefined && bmiRow.five_percent_weight_check !== null"
+                [isSuccess]="bmiRow.five_percent_weight_check! <= -5"
+                DisplayedValues
+              >
+                {{ bmiRow.five_percent_weight_check! >= -0.044 ? '+' : ''
+                }}{{ bmiRow.five_percent_weight_check | number: '1.1-1' }}%
+              </pass-fail-display>
+              <div class="editable-field" fields>
+                @for (formCtrl of currentWeightControlsArray(); track formCtrl.suffix) {
+                  <lib-text-field [formCtrl]="formCtrl" [suffix]="formCtrl.suffix"></lib-text-field>
+                }
+              </div>
+            </lib-editable-field>
+          </div>
+          <div class="table-cell">
+            <div class="cell-content">{{ getDisplayBmi(bmiRow.bmi) }}</div>
+          </div>
+          <div class="table-cell">
+            <div class="cell-content">
+              <div>
+                {{ bmiRow.order.service_code }}
+              </div>
+              <div
+                class="medication-display"
+                [matTooltip]="bmiRow.order.medication?.name || ''"
+                matTooltipPosition="right"
+              >
+                {{ bmiRow.order.medication?.name }}
+              </div>
+            </div>
+          </div>
+          <div class="table-cell">
+            <div class="cell-content">
+              <div>
+                {{ bmiRow.modified | date: 'dd MMM y' }}
+              </div>
+              <div class="modified-by">
+                {{ bmiRow.modified_by?.firstname && 'by' }} {{ bmiRow.modified_by?.firstname }}
+                {{ bmiRow.modified_by?.lastname | slice: 0 : 1 }}
+              </div>
+            </div>
+          </div>
+          <div class="table-cell edit-buttons-container" *ngIf="canEdit()">
+            <save-row-switcher
+              [editMode]="bmiRow.editMode"
+              [saveButtonDisabled]="!(bmiForm().dirty && bmiForm().valid)"
+              (editClick)="setEditMode(bmiRow, true)"
+              (saveClick)="onSaveRow(bmiRow)"
+              (cancelClick)="setEditMode(bmiRow, false)"
+            >
+              <lib-icon class="pencil-icon" name="PencilSimple"></lib-icon>
+            </save-row-switcher>
+          </div>
+        </div>
+      }
+    } @else {
+      @for (row of [].constructor(6); track i; let i = $index) {
+        @for (row of [].constructor(canEdit() ? 8 : 7); track i; let i = $index) {
+          <bmi-table-skeleton-item></bmi-table-skeleton-item>
+        }
+      }
+    }
+  </div>
+</lib-dialog-content>

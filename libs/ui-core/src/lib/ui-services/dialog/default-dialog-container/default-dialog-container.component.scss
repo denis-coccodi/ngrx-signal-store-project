@@ -1,0 +1,16 @@
+@use 'common-classes';
+
+$default-text-color: var(--Grey-Base);
+$default-bg-color: var(--Primary-White-Base);
+$default-border-color: var(--Grey-30T);
+
+:host {
+  @include common-classes.text-body-regular;
+  display: flex;
+  flex: 1 1 0;
+  flex-flow: column nowrap;
+  background-color: $default-bg-color;
+  width: 100%;
+  color: $default-text-color;
+  border: 2px solid $default-border-color;
+}

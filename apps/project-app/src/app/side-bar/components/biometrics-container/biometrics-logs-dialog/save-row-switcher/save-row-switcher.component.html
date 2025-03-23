@@ -1,0 +1,35 @@
+<div class="save-row-switcher-container">
+  @if (!editMode()) {
+    <button
+      class="button"
+      [attr.data-button-variant]="editButtonType === 'ICON' ? 'icon-default' : 'outline-default'"
+      tabindex="0"
+      (keyup.enter)="onEditClick($event)"
+      (mouseup)="onEditClick($event)"
+    >
+      <ng-content #editButtonContent></ng-content>
+    </button>
+  } @else {
+    <div class="edit-mode-container">
+      <button
+        class="button"
+        data-button-variant="solid-default"
+        tabindex="0"
+        [disabled]="saveButtonDisabled"
+        (keyup.enter)="onSaveClick($event)"
+        (mouseup)="onSaveClick($event)"
+      >
+        Save
+      </button>
+      <button
+        class="button"
+        data-button-variant="outline-default"
+        tabindex="0"
+        (keyup.enter)="onCancelClick($event)"
+        (mouseup)="onCancelClick($event)"
+      >
+        Cancel
+      </button>
+    </div>
+  }
+</div>

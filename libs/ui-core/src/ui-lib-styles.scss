@@ -1,0 +1,23 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+$ui-core-primary: mat.m2-define-palette(mat.$m2-indigo-palette);;
+$ui-core-accent: mat.m2-define-palette(mat.$m2-pink-palette, A200, A100, A400);
+
+$ui-core-warn: mat.m2-define-palette(mat.$m2-red-palette);
+
+$ui-core-typography: mat.m2-define-typography-config(
+        $font-family: 'OpenSans, "Helvetica Neue", Helvetica',
+        $body-1: mat.m2-define-typography-level(12px, 20px, 0),
+);
+
+$ui-core-theme: mat.m2-define-light-theme((
+        color: (
+                primary: $ui-core-primary,
+                accent: $ui-core-accent,
+                warn: $ui-core-warn,
+        ),
+        typography: $ui-core-typography,
+));
+
+@include mat.all-component-themes($ui-core-theme);

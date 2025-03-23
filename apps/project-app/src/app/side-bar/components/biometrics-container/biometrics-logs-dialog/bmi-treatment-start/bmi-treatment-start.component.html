@@ -1,0 +1,50 @@
+<section
+  class="bmi-treatment-start-container"
+  [ngClass]="{ 'edit-mode': editMode() }"
+  [formGroup]="bmiTreatmentStartForm()"
+>
+  <div class="bmi-treatment-start-date-container">
+    <label class="reset-label-properties text-body-regular mr-16" for="bmi-treatment-start-date">
+      Treatment start date
+    </label>
+    <lib-editable-field [editMode]="editMode()">
+      <div DisplayedValues class="text-body-bold">{{ displayStartDate() }}</div>
+      <lib-datepicker
+        fields
+        class="datepicker"
+        [dateFormControl]="treatmentStartDateCtrl()"
+        [maxDate]="today"
+      ></lib-datepicker>
+    </lib-editable-field>
+  </div>
+  <div class="bmi-treatment-start-weight-container">
+    <label class="reset-label-properties text-body-regular mr-16" for="bmi-treatment-start-weight">
+      Starting Weight
+    </label>
+    <lib-editable-field [editMode]="editMode()">
+      <div DisplayedValues class="text-body-bold">{{ displayWeight() }}</div>
+      <div class="weight-suffixed-field" fields>
+        @for (formCtrl of currentWeightControlsArray(); track formCtrl.suffix) {
+          <lib-text-field
+            [ngClass]="selectedWeightSystem() === 'IMPERIAL' ? 'imperial' : 'metric'"
+            [formCtrl]="formCtrl"
+            [suffix]="formCtrl.suffix"
+          ></lib-text-field>
+        }
+      </div>
+    </lib-editable-field>
+  </div>
+  <div class="bmi-treatment-start-switchers-container">
+    <save-row-switcher
+      [editMode]="editMode()"
+      editButtonType="SOLID_BUTTON"
+      [editButtonText]="editButtonText()"
+      [saveButtonDisabled]="!(bmiTreatmentStartForm().dirty && bmiTreatmentStartForm().valid)"
+      (editClick)="onEditClick()"
+      (saveClick)="onSaveClick()"
+      (cancelClick)="onCancelClick()"
+    >
+      {{ editButtonText() }}
+    </save-row-switcher>
+  </div>
+</section>

@@ -1,0 +1,54 @@
+@use 'common-classes';
+
+$field-bg: var(--Primary-White-Base);
+$field-border-color: var(--Primary-Accent-Blue-50T);
+$field-error-border-color: var(--Semantic-Error-Base);
+$field-text-color: var(--Grey-90TCustom);
+$text-placeholder-color: var(--Grey-50T);
+$suffix-color: var(--Grey-60TCustom);
+
+:host {
+  position: relative;
+}
+
+input {
+  @include common-classes.text-body-regular;
+  width: 100%;
+  height: 48px;
+  border: 1px solid $field-border-color;
+  background-color: $field-bg;
+  color: $field-text-color;
+  padding: 8px 8px 8px 8px;
+  box-sizing: border-box;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+
+  &.errors {
+    border: 1px solid $field-error-border-color;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &::placeholder {
+    @include common-classes.text-body-regular;
+    color: $text-placeholder-color;
+    font-weight: 200;
+    margin-right: 38px;
+  }
+}
+
+.suffix {
+  @include common-classes.text-body-regular;
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  padding: 0;
+  transform: translateY(-50%);
+  color: $suffix-color;
+  background: none;
+  border: none;
+}

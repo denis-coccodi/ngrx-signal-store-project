@@ -1,0 +1,48 @@
+@use 'common-classes';
+
+$selected-btn-color: var(--Primary-Accent-Blue-Base);
+$unselected-btn-color: var(--Grey-30T);
+$btn-text-color: var(--Primary-White-Base);
+$selected-button-focus-bg: var(--Primary-Accent-Blue-Dark);
+$unselected-button-focus-bg: var(--Grey-50T);
+
+.table-header-selector-container {
+	@include common-classes.text-body-regular;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-flow: column nowrap;
+	.btnsSection {
+		display: flex;
+		justify-content: space-between;
+		flex-flow: row;
+		.selector {
+			background-color: $unselected-btn-color;
+			color: $btn-text-color;
+			border: none;
+			border-radius: 4px;
+			font-weight: bold;
+			&:focus-visible, &:hover {
+				background-color: $unselected-button-focus-bg;
+			}
+			cursor: pointer;
+			max-width: 8.5rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			min-height: 26px;
+			min-width: 69px;
+			white-space: nowrap;
+			overflow: hidden;
+			&:not(:last-child) {
+				margin-right: 5px;
+			}
+			&.selected {
+				background-color: $selected-btn-color;
+				&:focus-visible, &:hover {
+					background-color: $selected-button-focus-bg;
+				}
+			}
+		}
+	}
+}

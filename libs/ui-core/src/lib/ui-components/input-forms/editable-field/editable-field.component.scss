@@ -1,0 +1,31 @@
+@mixin flex-occupy-space {
+  display: flex;
+  flex: 1 1 0;
+}
+
+:host {
+  @include flex-occupy-space;
+}
+
+.editable-field-container {
+  @include flex-occupy-space;
+  .text-display-container {
+    @include flex-occupy-space;
+    gap: 8px;
+
+    *:not(:only-child) {
+      flex: 1;
+    }
+
+    *:not(:last-child) {
+      margin-right: auto;
+    }
+
+    .displayed-text {
+      color: var(--Grey-90TCustom);
+      display: flex;
+      align-self: center;
+      text-align: left;
+    }
+  }
+}

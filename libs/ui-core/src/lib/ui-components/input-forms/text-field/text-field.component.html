@@ -1,0 +1,13 @@
+<input
+  *ngIf="formCtrl()"
+  type="text"
+  class="input-text"
+  [formControl]="formCtrl()"
+  [placeholder]="placeholder() || ''"
+  [class.errors]="formCtrl().touched && formCtrl().errors"
+  [ngClass]="suffix() ? 'pr-28' : 'pr-8'"
+  [ngStyle]="customStyles()"
+/>
+@if (suffix()) {
+<div class="suffix" #suffixElement>{{ suffix() }}</div>
+}

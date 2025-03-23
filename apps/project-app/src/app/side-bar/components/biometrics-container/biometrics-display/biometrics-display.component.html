@@ -1,0 +1,38 @@
+<section class="biometrics-display-container" *ngIf="showBiometrics()">
+  <h2 class="biometrics-title">BIOMETRICS</h2>
+  <div class="bio-data-container">
+    <div class="bio-detail-title column-1">Date:</div>
+    <div class="bio-detail-desc column-2">
+      {{ latestBmiItem()?.created | ordinalDate }}
+    </div>
+    <div class="bio-detail-title column-1">Height:</div>
+    <div class="bio-detail-desc column-2">
+      {{ latestBmiItem()?.height | number: '1.0-0' }}{{ latestBmiItem()?.height && 'cm |' }}
+      {{ latestBmiItem()?.height | metricToImperialHeight }}
+    </div>
+    <div class="bio-detail-title column-1">Weight:</div>
+    <div class="bio-detail-desc column-2">
+      {{ latestBmiItem()?.weight | number: '1.0-0' }}{{ latestBmiItem()?.weight && 'kg |' }}
+      {{ latestBmiItem()?.weight | metricToImperialWeight }}
+    </div>
+    <div class="bio-detail-title column-1">BMI:</div>
+    <div class="bio-detail-desc column-2">
+      {{ latestBmiItem()?.bmi | number: '1.0-1' }}
+    </div>
+  </div>
+  <div class="five-percent-data-container mt-8">
+    <div class="five-percent-data-title">5% WL:</div>
+    <div class="five-percent-data-desc" [ngClass]="fivePercentStatusColorClass()">
+      {{ fivePercentStatusDisplayValue() }}
+    </div>
+  </div>
+  <div class="five-percent-data-container">
+    <div class="five-percent-data-title">WL Medication:</div>
+    <div class="five-percent-data-desc">
+      {{ store.treatmentDetails().current_wei_medication?.name || '' }}
+    </div>
+  </div>
+  <footer class="footer-container">
+    <button class="manage-bmi-btn" (mouseup)="onViewLogsClick($event)" *ngIf="showLogsButton">Manage BMI Log</button>
+  </footer>
+</section>

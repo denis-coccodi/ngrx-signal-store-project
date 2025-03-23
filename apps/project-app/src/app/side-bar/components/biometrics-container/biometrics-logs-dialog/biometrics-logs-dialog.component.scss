@@ -1,0 +1,114 @@
+@use 'common-classes';
+
+$column-header-bg: var(--Grey-10T);
+$odd-row-color: var(--Primary-Boots-Blue-3T);
+$edit-mode-bg: var(--Primary-Accent-Blue-7T);
+$default-text-color: var(--Grey-Base);
+
+.dialog-title {
+  margin: auto;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+lib-dialog-content {
+  .dropdowns-container {
+    padding: 16px 24px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    input {
+      margin: 0;
+    }
+    label {
+      margin-bottom: 0;
+    }
+    lib-dropdown {
+      width: 200px;
+    }
+  }
+  .grid-container {
+    display: grid;
+    will-change: transform;
+    .col-header {
+      position: sticky;
+      top: 0;
+      background-color: $column-header-bg;
+      font-weight: 700;
+    }
+
+    .table-cell {
+      display: flex;
+      align-items: center;
+      min-height: 56px;
+      padding: 4px 16px;
+      gap: 8px;
+
+      &.large-padding-cell {
+        padding: 4px 24px;
+      }
+
+      .visit-id-cell {
+        display: flex;
+        flex: 1 1 0;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 8px;
+      }
+      .refill-icon {
+        width: 16px;
+        fill: var(--Grey-50T);
+      }
+
+      .editable-field {
+        display: flex;
+        column-gap: 8px;
+
+        lib-text-field {
+          display: flex;
+          flex: 1 1 auto;
+        }
+      }
+
+      pass-fail-display {
+        width: 75px;
+      }
+
+      &.edit-buttons-container {
+        .pencil-icon {
+          width: 20px;
+        }
+      }
+
+      .medication-display {
+        max-width: 200px;
+        overflow-x: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .modified-by {
+        max-width: 130px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .row-wrapper {
+      display: contents;
+      &:nth-child(odd) {
+        .table-cell {
+          background-color: $odd-row-color;
+        }
+      }
+      &.edit-mode {
+        .table-cell {
+          background-color: $edit-mode-bg;
+        }
+      }
+    }
+  }
+}

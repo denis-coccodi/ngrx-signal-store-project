@@ -1,0 +1,45 @@
+@use 'common-classes';
+@use 'buttons/button-base';
+@import 'themes';
+
+/* Button icon variants */
+
+/* To create a variant:
+  1. Add `data-button-variant` to button element, and unique, descriptive name
+  2. Update custom properties from configuration list above as required
+*/
+
+.button[data-button-variant='icon-default'] {
+  @include common-classes.text-body-regular;
+  --button-bg: transparent;
+  --button-padding: 10px 10px;
+  --button-color: var(--Primary-Accent-Blue-Base);
+  --button-border: none;
+  --button-hover-border: none;
+  --button-focus-border: none;
+  --button-disabled-border: none;
+  --button-hover-color: var(--Primary-Accent-Blue-Base);
+  --button-hover-bg: var(--Primary-Accent-Blue-10T);
+  --button-focus-color: var(--Primary-Accent-Blue-Base);
+  --button-focus-bg: var(--Primary-Accent-Blue-10T);
+  min-width: var(--btn-icon-min-width, 48px);
+}
+
+.button[data-button-variant='header-icon'] {
+  @include common-classes.text-body-regular;
+  --button-height: 32px;
+  --button-bg: transparent;
+  --button-padding: 8px 8px;
+  --button-icon-color: var(--Grey-Base);
+  --button-border: none;
+  --button-hover-border: none;
+  --button-focus-border: none;
+  --button-disabled-border: none;
+  --button-hover-color: var(--Grey-Base);
+  --button-hover-bg: var(--Primary-Accent-Blue-10T);
+  --button-focus-color: var(--Grey-Base);
+  --button-focus-bg: var(--Primary-Accent-Blue-10T);
+  svg {
+    width: 16px;
+  }
+}

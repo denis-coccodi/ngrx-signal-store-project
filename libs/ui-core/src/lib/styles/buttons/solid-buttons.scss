@@ -1,0 +1,14 @@
+@use 'common-classes';
+@use 'buttons/button-base';
+@import 'themes';
+
+/* Button solid variants */
+
+/* To create a variant:
+  1. Add `data-button-variant` to button element, and unique, descriptive name
+  2. Update custom properties from configuration list above as required
+*/
+
+.button[data-button-variant='solid-default'] {
+  @include common-classes.text-body-regular;
+}

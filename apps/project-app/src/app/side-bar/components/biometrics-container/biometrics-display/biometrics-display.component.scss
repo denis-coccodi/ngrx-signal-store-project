@@ -1,0 +1,87 @@
+$status-colors: (
+  'not-due': var(--Primary-Black-Base),
+  'due': var(--Semantic-Warning-Base),
+  'met': var(--Semantic-Success-Base),
+  'not-met': var(--Semantic-Error-Base),
+);
+$gray-md: var(--Grey-30T);
+
+$five-percent-status-array: 'not-due', 'due', 'met', 'not-met';
+
+.biometrics-display-container {
+  padding: 5px 0 15px 0;
+
+  .biometrics-title {
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: $gray-md;
+    margin-top: 8px;
+    margin-bottom: 20px;
+  }
+
+  .bio-data-container {
+    display: grid;
+    grid-template-columns: 60px auto;
+    grid-template-rows: auto;
+    padding-left: 4px;
+    grid-template-areas: 'column-1 column-2';
+    .bio-detail-title {
+      font-weight: bold;
+      color: $gray-md;
+      margin-bottom: 6px;
+    }
+
+    .column-1 {
+      grid-column: 1;
+    }
+
+    .column-2 {
+      grid-column: 2;
+    }
+  }
+  .five-percent-data-container {
+    padding-left: 4px;
+    display: flex;
+    margin-bottom: 6px;
+    font-size: 14px;
+    .five-percent-data-title {
+      white-space: nowrap;
+      font-weight: bold;
+      color: $gray-md;
+      font-size: 12px;
+    }
+    .five-percent-data-desc {
+      margin-left: 4px;
+      font-size: 12px;
+      @each $five-percent-status in $five-percent-status-array {
+        &.#{$five-percent-status} {
+          font-weight: bold;
+          color: map-get($status-colors, $five-percent-status);
+        }
+      }
+    }
+  }
+  .footer-container {
+    .manage-bmi-btn {
+      color: #fff;
+      background-color: #414bb2;
+      border: none;
+      overflow: hidden;
+      white-space: nowrap;
+      padding: 6px 8px;
+      text-align: center;
+      font-weight: bold;
+      border-radius: 2px;
+      border: 1px solid transparent;
+      margin-left: 65px;
+      margin-top: 40px;
+      &:hover {
+        background-color: #4852c4;
+      }
+      &:focus {
+        border-color: #000;
+      }
+    }
+  }
+}

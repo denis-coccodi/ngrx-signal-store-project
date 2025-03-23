@@ -1,0 +1,11 @@
+
+@use 'buttons/solid-buttons';
+@use 'buttons/outline-buttons';
+@use 'buttons/icon-buttons';
+
+.save-row-switcher-container {
+	.edit-mode-container {
+		display: flex;
+		gap: 16px;
+	}
+}

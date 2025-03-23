@@ -1,0 +1,36 @@
+{
+  "compileOnSave": false,
+  "compilerOptions": {
+    "rootDir": ".",
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "importHelpers": true,
+    "target": "es2015",
+    "module": "esnext",
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@mocks-lib": ["libs/mocks/src/index.ts"],
+      "@shared-utils": ["libs/shared-utils/src/index.ts"],
+      "@bmi-store": ["libs/ngrx-store/bmi-store/src/index.ts"],
+      "@types-lib": ["libs/types/src/index.ts"],
+      "@ui-lib": ["libs/ui-core/src/index.ts"],
+      "@ui-lib/components": ["libs/ui-core/src/index.components.ts"],
+      "@ui-lib/pipes": ["libs/ui-core/src/index.pipes.ts"],
+      "@ui-lib/services": ["libs/ui-core/src/index.services.ts"],
+      "environments": ["libs/environments/src/index.ts"],
+      "@local-mocks": ["libs/mocks/src/index.local-mocks.ts"],
+      "@logged-in-user-store": [
+        "libs/ngrx-store/logged-in-user-store/src/index.ts"
+      ],
+      "@pims-services": ["libs/services/pims-services/src/index.ts"]
+    }
+  },
+  "exclude": ["node_modules", "tmp"]
+}

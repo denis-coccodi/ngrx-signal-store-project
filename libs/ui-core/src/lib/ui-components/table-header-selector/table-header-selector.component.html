@@ -1,0 +1,14 @@
+<div class="table-header-selector-container">
+	<strong>{{ data.title }}</strong>
+	<section class="btnsSection">
+		@for (selector of data.selectors; track selector.id) {
+		<button
+			(mouseup)="data.onClickFunction(selector.id); data.selected = selector.id"
+			class="selector"
+			[ngClass]="{ selected: data.selected === selector.id }"
+		>
+			{{ selector.btnLabel }}
+		</button>
+		}
+	</section>
+</div>

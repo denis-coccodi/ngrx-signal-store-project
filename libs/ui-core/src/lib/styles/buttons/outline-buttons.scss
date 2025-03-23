@@ -1,0 +1,22 @@
+@use 'common-classes';
+@use 'buttons/button-base';
+
+/* Button outline variants */
+
+/* To create a variant:
+  1. Add `data-button-variant` to button element, and unique, descriptive name
+  2. Update custom properties from configuration list above as required
+*/
+
+.button[data-button-variant='outline-default'] {
+  @include common-classes.text-body-regular;
+  --button-bg: transparent;
+  --button-color: var(--Primary-Accent-Blue-Base);
+  --button-border: 1px solid var(--Primary-Accent-Blue-Base);
+  --button-hover-color: var(--Primary-Accent-Blue-Base);
+  --button-hover-bg: var(--Primary-Accent-Blue-10T);
+  --button-focus-color: var(--Primary-Accent-Blue-Base);
+  --button-focus-bg: var(--Primary-Accent-Blue-10T);
+  --button-disabled-color: var(--Primary-Accent-Blue-Base);
+  --button-disabled-border: 1px solid var(--Primary-Accent-Blue-Base);
+}

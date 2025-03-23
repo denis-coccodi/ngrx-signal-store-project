@@ -1,0 +1,50 @@
+@use 'buttons/solid-buttons' as *;
+@use 'buttons/outline-buttons' as *;
+
+$outer-borders-color: var(--Grey-30TCustom);
+$edit-mode-bg-color: var(--Primary-Accent-Blue-7T);
+
+@mixin align-center {
+  display: flex;
+  align-items: center;
+}
+
+.bmi-treatment-start-container {
+  
+  display: flex;
+  justify-content: flex-start;
+  min-height: 64px;
+  border-bottom: 1px solid $outer-borders-color;
+  padding: 10px 24px;
+  column-gap: 24px;
+  &.edit-mode {
+    background-color: $edit-mode-bg-color;
+  }
+  .datepicker {
+    width: 129px;
+  }
+  .bmi-treatment-start-date-container {
+    @include align-center;
+  }
+  .bmi-treatment-start-weight-container {
+    @include align-center;
+    min-height: 40px;
+    .weight-suffixed-field {
+      display: flex;
+      column-gap: 8px;
+      .metric {
+        width: 136px;
+      }
+      .imperial{
+        width: 64px
+      }
+    }
+  }
+  .bmi-treatment-start-switchers-container {
+    @include align-center;
+    .edit-mode-container {
+      display: flex;
+      column-gap: 16px;
+    }
+  }
+}

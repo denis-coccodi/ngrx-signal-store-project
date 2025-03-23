@@ -1,0 +1,32 @@
+{
+	"extends": "./tsconfig.json",
+	"compilerOptions": {
+		"outDir": "../../dist/out-tsc",
+		"declaration": true,
+		"declarationMap": true,
+		"inlineSources": true,
+		"target": "es2022",
+		"useDefineForClassFields": false,
+		"forceConsistentCasingInFileNames": true,
+		"strict": true,
+		"noImplicitOverride": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noImplicitReturns": true,
+		"noFallthroughCasesInSwitch": true,
+		"moduleResolution": "node",
+		"types": ["node"],
+		"esModuleInterop": true,
+		"allowSyntheticDefaultImports": true,
+		"module": "ESNext",
+		"skipLibCheck": true,
+		"allowJs": true,
+		"resolveJsonModule": true
+	},
+	"exclude": [
+		"src/**/*.spec.ts",
+		"src/test-setup.ts",
+		"jest.config.ts",
+		"src/**/*.test.ts"
+	],
+	"include": ["src/**/*.ts", "apps/fe-team-e2e/src/fixtures/service-apis-interceptors.ts"]
+}

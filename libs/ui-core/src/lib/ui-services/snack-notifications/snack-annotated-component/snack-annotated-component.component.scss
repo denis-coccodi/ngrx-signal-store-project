@@ -1,0 +1,28 @@
+$white: var(--Primary-White-Base);
+$success-color:var(--Semantic-Success-Base);
+$warning-color:var(--Semantic-Warning-Base);
+$alert-color:var(--Semantic-Error-Base);
+
+.snack-body {
+	display: flex;
+	.snack-label {
+		color: $white;
+		font-weight: 500;
+		white-space: pre-wrap;
+	}
+	.snack-action {
+		color: $white;
+	}
+}
+
+.snack-success {
+	background: $success-color;
+}
+
+.snack-warning {
+	background: $warning-color;
+}
+
+.snack-error {
+	background: $alert-color;
+}

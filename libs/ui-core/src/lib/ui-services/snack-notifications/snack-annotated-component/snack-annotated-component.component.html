@@ -1,0 +1,16 @@
+<div class="snack-body">
+	<span matSnackBarLabel>
+		<div class="snack-label">{{ data.message }}</div>
+	</span>
+	<span matSnackBarActions>
+		<button
+			class="snack-action"
+			[ngClass]="data.type"
+			mat-button
+			matSnackBarAction
+			(click)="snackBarRef.dismissWithAction()"
+		>
+			{{ data.actionLabel }}
+		</button>
+	</span>
+</div>

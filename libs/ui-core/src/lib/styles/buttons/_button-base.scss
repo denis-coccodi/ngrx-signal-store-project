@@ -1,0 +1,75 @@
+/* Default button styles */
+
+.button {
+  /* Configuration */
+  --button-padding: 0 16px;
+  --button-height: 48px;
+  --button-gap: 0.5em;
+  --button-bg: var(--Primary-Accent-Blue-Base);
+  --button-color: var(--Primary-White-Base);
+  --button-border: 1px solid var(--Primary-Accent-Blue-Base);
+  --button-radius: 4px;
+  --button-hover-bg: var(--Primary-Accent-Blue-Dark);
+  --button-hover-color: var(--Primary-White-Base);
+  --button-hover-border: 1px solid var(--Primary-Accent-Blue-Base);
+  --button-focus-bg: var(--Primary-Accent-Blue-Dark);
+  --button-focus-color: var(--Primary-White-Base);
+  --button-focus-border: 1px solid var(--Primary-Accent-Blue-Base);
+  --button-disabled-color: var(--Primary-White-Base);
+  --button-disabled-bg: var(--Grey-30T);
+  --button-disabled-border: 1px solid var(--Grey-30T);
+  --button-icon-color: var(--Primary-Accent-Blue-Base);
+
+  /* Layout and spacing */
+  display: inline-flex;
+  min-inline-size: 0;
+  padding: var(--button-padding);
+
+  /* Stroke and radius */
+  border: var(--button-border);
+  border-radius: var(--button-radius);
+  min-height: var(--button-height);
+  align-items: center;
+  justify-content: center;
+  gap: var(--button-gap);
+  text-box: trim-both cap alphabetic;
+  font-size: var(--button-font-size, 1em);
+  font-weight: var(--button-font-weight, 700);
+  letter-spacing: 0.05ch;
+  line-height: 1.1;
+
+  /* Typography */
+  text-decoration: none;
+  color: var(--button-color);
+
+  /* Colours */
+  background: var(--button-bg);
+
+  /* Interactive */
+  cursor: pointer;
+
+  fill: var(--button-icon-color);
+
+  &:hover {
+    color: var(--button-hover-color);
+    background: var(--button-hover-bg);
+    border: var(--button-hover-border);
+  }
+
+  &:active {
+    transform: scale(99%);
+  }
+
+  &:focus-visible {
+    color: var(--button-focus-color);
+    background: var(--button-focus-bg);
+    border: var(--button-focus-border);
+  }
+
+  &:disabled {
+    border: var(--button-disabled-border);
+    background: var(--button-disabled-bg);
+    color: var(--button-disabled-color);
+    cursor: not-allowed;
+  }
+}

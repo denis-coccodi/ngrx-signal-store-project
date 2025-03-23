@@ -1,0 +1,30 @@
+<div class="select-container" #dropdown>
+  <div
+    tabindex="0"
+    class="select"
+    (click)="toggleDropdown()"
+    (keydown.enter)="toggleDropdown()"
+    role="combobox"
+    aria-labelledby="select button"
+    aria-haspopup="listbox"
+    aria-expanded="false"
+    aria-controls="select-dropdown"
+  >
+    <div class="selected-item">{{ selectedOption()?.description }}</div>
+  </div>
+
+  <ul class="dropdown" *ngIf="isDropdownOpen()">
+    @for ( option of options(); track option.value; let i = $index) {
+    <li
+      #optionElements
+      [tabindex]="i ? -1 : 0"
+      class="option"
+      (click)="selectOption(option)"
+      (keydown.enter)="selectOption(option)"
+      (keydown.escape)="closeDropdown($event)"
+    >
+      {{ option.description }}
+    </li>
+    }
+  </ul>
+</div>

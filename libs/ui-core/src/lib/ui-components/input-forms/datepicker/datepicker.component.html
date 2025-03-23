@@ -1,0 +1,39 @@
+<div class="date-picker-container" (keydown.escape)="closeCalendar($event)" #datepicker>
+  <input
+    type="text"
+    class="input-text"
+    [formControl]="dateFormControl()"
+    [placeholder]="placeholder()"
+    [class.errors]="dateFormControl().touched && dateFormControl().errors"
+  />
+
+  <button class="calendar-icon" type="button" (click)="toggleCalendar()">
+    <lib-icon class="calendar-img" name="CalendarBlank" alt="Calendar"></lib-icon>
+  </button>
+
+  <div class="calendar" *ngIf="showCalendar()">
+    <div class="calendar-header" (keydown.arrowLeft)="prevMonth()" (keydown.arrowRight)="nextMonth()">
+      <button (click)="prevMonth()">&#x276E;</button>
+      <span>{{ displayedMonth() }} {{ displayedYear() }}</span>
+      <button (click)="nextMonth()">&#x276F;</button>
+    </div>
+    <div class="calendar-grid">
+      <div class="week-day" *ngFor="let day of days">{{ day }}</div>
+      @for ( date of calendarDates(); track date; let i = $index) {
+        <button
+          #calendarDate
+          [tabindex]="isSelected(date) ? 0 : -1"
+          (keydown.arrowLeft)="focusPreviousDate($event)"
+          (keydown.arrowRight)="focusNextDate($event)"
+          (keydown.arrowUp)="focusPreviousRowDate($event)"
+          (keydown.arrowDown)="focusNextRowDate($event)"
+          (click)="selectDate(date)"
+          [disabled]="isDisabledDate(date)"
+          [class.selected]="isSelected(date)"
+        >
+          {{ date.getDate() }}
+        </button>
+      }
+    </div>
+  </div>
+</div>

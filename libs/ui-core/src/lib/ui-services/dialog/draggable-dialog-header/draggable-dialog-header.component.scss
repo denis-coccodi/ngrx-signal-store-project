@@ -1,0 +1,28 @@
+@use 'common-classes';
+@use 'buttons/button-base';
+@use 'buttons/icon-buttons';
+
+$close-icon-color: var(--Grey-Base);
+$close-btn-bg-color: var(--Grey-10T);
+$border-bottom-color: var(--Grey-30TCustom);
+
+.dialog-header {
+  @include common-classes.text-large-regular;
+  border-bottom: 1px solid $border-bottom-color;
+  cursor: grab;
+  min-height: 40px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  .close-btn {
+    margin-right: 8px;
+    .close-icon {
+      width: 16px;
+    }
+  }
+  &:active {
+    cursor: grabbing;
+  }
+}

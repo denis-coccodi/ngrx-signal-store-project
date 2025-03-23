@@ -1,0 +1,25 @@
+$bg-color-success: var(--Semantic-Success-10T);
+$border-color-success: var(--Semantic-Success-Base);
+$bg-color-error: var(--Semantic-Error-10T);
+$border-color-error: var(--Semantic-Error-Base);
+
+.pass-fail-container {
+  display: flex;
+  justify-content: center;
+  padding: 4px 8px;
+  gap: 8px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  &.pass {
+    background-color: $bg-color-success;
+    border-color: $border-color-success;
+  }
+  &.fail {
+    background-color: $bg-color-error;
+    border-color: $border-color-error;
+  }
+  .pass-fail-content {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+  }
+}

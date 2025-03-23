@@ -1,0 +1,135 @@
+@use 'common-classes';
+
+$text-placeholder-color: var(--Grey-50T);
+$field-border-color: var(--Primary-Accent-Blue-50T);
+$field-error-border-color: var(--Semantic-Error-Base);
+
+$calendar-icon-color: var(--Grey-50T);
+$calendar-bg-color: var(--Primary-White-Base);
+$calendar-image-outline-focus-color: var(--Primary-Accent-Blue-Base);
+$calendar-border-color: var(--Grey-30TCustom);
+$calendar-header-bg-color: var(--Grey-10T);
+$calendar-header-button-focus-color: var(--Grey-30TCustom);
+$selected-date-bg-color: var(--Primary-Accent-Blue-Base);
+$hover-date-bg-color: var(--Grey-10T);
+$focus-date-bg-color: var(--Grey-10T);
+$selected-date-color: var(--Primary-White-Base);
+$shadow-color: var(--Primary-Black-Base);
+$holiday-color: var(--Semantic-Error-Base);
+
+.date-picker-container {
+  display: flex;
+  position: relative;
+
+  input {
+    @include common-classes.text-body-regular;
+    width: 100%;
+    height: 48px;
+    border: 1px solid $field-border-color;
+    padding: 8px 28px 8px 8px;
+    box-sizing: border-box;
+    outline: none;
+
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &.errors {
+      border: 1px solid $field-error-border-color;
+    }
+
+    &::placeholder {
+      color: $text-placeholder-color;
+      font-weight: 200;
+      margin-right: 38px;
+    }
+  }
+
+  .calendar-icon {
+    position: absolute;
+    top: 50%;
+    right: 6px;
+    padding: 0;
+    width: 20px;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    &:focus-visible {
+      outline: 2px solid $calendar-image-outline-focus-color;
+    }
+
+    .calendar-img {
+      fill: $calendar-icon-color;
+    }
+  }
+
+  .calendar {
+    @include common-classes.text-body-regular;
+    position: absolute;
+    top: 50px;
+    left: 0;
+    width: 300px;
+    background: $calendar-bg-color;
+    border: 1px solid $calendar-border-color;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba($shadow-color, 0.2);
+    z-index: 10;
+
+    .calendar-header {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      background-color: $calendar-header-bg-color;
+      border-bottom: 1px solid $calendar-border-color;
+
+      button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        &:focus-visible {
+          outline: 2px solid $calendar-header-button-focus-color;
+        }
+      }
+    }
+
+    .calendar-grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      text-align: center;
+
+      .week-day,
+      button {
+        @include common-classes.text-small-regular;
+        margin: 4px;
+        padding: 5px;
+        cursor: pointer;
+        border: none;
+        background: none;
+        &.selected {
+          background: $selected-date-bg-color;
+          color: $selected-date-color;
+          border-radius: 50%;
+        }
+        &:hover {
+          background-color: $hover-date-bg-color;
+        }
+        &:focus {
+          outline: none;
+          background-color: $hover-date-bg-color;
+        }
+        &.selected {
+          background: $selected-date-bg-color;
+          color: $selected-date-color;
+          border-radius: 50%;
+        }
+      }
+      .week-day:nth-child(1),
+      .week-day:nth-child(7) {
+        color: $holiday-color;
+      }
+    }
+  }
+}

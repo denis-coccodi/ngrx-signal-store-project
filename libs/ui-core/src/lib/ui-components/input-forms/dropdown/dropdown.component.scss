@@ -1,0 +1,111 @@
+@use 'common-classes';
+
+$select-text-color: var(--Grey-Base);
+$select-background-color: var(--Primary-White-Base);
+$select-focus-active-color: var(--Primary-Accent-Blue-Base);
+$select-padding: 12px 24px 8px 8px;
+$select-min-width: 90px;
+$select-max-width: 100%;
+$select-height: 48px;
+$dropdown-container-max-height: 160px;
+$downward-triangle-color: var(--Grey-Base);
+$downward-triangle-size: 12px;
+$select-border-color: var(--Grey-30T);
+$option-hover-bg-color: var(--Grey-10T);
+$scrollbar-bg-color: var(--Grey-10T);
+$scrollbar-color: var(--Grey-30T);
+
+@mixin firefox-only {
+  @supports (-moz-appearance: none) {
+    @content;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.select-container {
+  position: relative;
+  max-width: $select-max-width;
+  min-width: $select-min-width;
+  .select {
+    @include common-classes.text-body-regular;
+    background-color: $select-background-color;
+    border: 1px solid $select-border-color;
+    border-radius: 4px;
+    width: 100%;
+    max-height: $select-height;
+    padding: $select-padding;
+    font-weight: 700;
+    color: $select-text-color;
+    cursor: pointer;
+    display: block;
+
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 6' %3E%3Cpath d='M12 0H0L6 6L12 0Z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    fill: $downward-triangle-color;
+    background-size: $downward-triangle-size;
+
+    &:focus,
+    &:active {
+      outline: none;
+    }
+
+    &:focus-visible {
+      outline: 2px solid $select-focus-active-color;
+    }
+
+    .selected-item {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  }
+
+  .dropdown {
+    position: absolute;
+    z-index: 1;
+    margin-top: 4px;
+    padding: 8px;
+    border-radius: 4px;
+    overflow-y: auto;
+    max-height: $dropdown-container-max-height;
+    min-width: 100%;
+    width: max-content;
+    background-color: $select-background-color;
+    border: 1px solid $select-border-color;
+
+    @include firefox-only {
+      scrollbar-width: thin;
+      scrollbar-color: $scrollbar-color $scrollbar-bg-color;
+    }
+
+    &::-webkit-scrollbar {
+      width: 7px;
+    }
+    &::-webkit-scrollbar-track {
+      background: $scrollbar-bg-color;
+      border-radius: 4px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $scrollbar-color;
+      border-radius: 4px;
+    }
+
+    .option {
+      @include common-classes.text-body-regular;
+      padding: 8px;
+      font-weight: 400;
+      color: $select-text-color;
+      white-space: nowrap;
+      &:hover,
+      &:focus-visible {
+        outline: none;
+        background-color: $option-hover-bg-color;
+        font-weight: bold;
+      }
+    }
+  }
+}

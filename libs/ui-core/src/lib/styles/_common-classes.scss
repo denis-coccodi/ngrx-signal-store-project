@@ -1,0 +1,130 @@
+@use 'fonts';
+
+@mixin text-xsmall-regular {
+  @include text-body-regular;
+  font-size: 12px;
+}
+
+@mixin text-small-regular {
+  @include text-body-regular;
+  font-size: 12px;
+}
+
+@mixin text-body-regular {
+  font-family: 'BootsSharp', 'Open Sans', 'Helvetica Neue', Helvetica, Arial,
+    sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@mixin text-body-bold {
+  @include text-body-regular;
+  font-weight: 700;
+}
+
+@mixin text-large-regular {
+  @include text-body-regular;
+  font-size: 18px;
+}
+
+@mixin reset-label-properties {
+  @include text-body-regular;
+  color: var(--Grey-90TCustom);
+  letter-spacing: unset;
+  margin-bottom: 0;
+  position: relative;
+  text-transform: unset;
+}
+
+.text-small-regular {
+  @include text-small-regular;
+}
+
+.text-body-regular {
+  @include text-body-regular;
+}
+
+.text-body-bold {
+  @include text-body-bold();
+}
+
+.text-large-regular {
+  @include text-large-regular;
+}
+
+.reset-label-properties {
+  @include reset-label-properties;
+}
+
+.display-contents {
+  display: contents;
+}
+
+$spacing-values: 4, 8, 12, 16, 20, 24, 28, 32, 36, 40;
+
+// padding classes
+@each $value in $spacing-values {
+  .p-#{$value} {
+    padding: #{$value}px;
+  }
+
+  .pt-#{$value} {
+    padding-top: #{$value}px;
+  }
+
+  .pr-#{$value} {
+    padding-right: #{$value}px;
+  }
+
+  .pb-#{$value} {
+    padding-bottom: #{$value}px;
+  }
+
+  .pl-#{$value} {
+    padding-left: #{$value}px;
+  }
+
+  .px-#{$value} {
+    padding-left: #{$value}px;
+    padding-right: #{$value}px;
+  }
+
+  .py-#{$value} {
+    padding-top: #{$value}px;
+    padding-bottom: #{$value}px;
+  }
+}
+
+// margin classes
+@each $value in $spacing-values {
+  .m-#{$value} {
+    margin: #{$value}px;
+  }
+
+  .mt-#{$value} {
+    margin-top: #{$value}px;
+  }
+
+  .mr-#{$value} {
+    margin-right: #{$value}px;
+  }
+
+  .mb-#{$value} {
+    margin-bottom: #{$value}px;
+  }
+
+  .ml-#{$value} {
+    margin-left: #{$value}px;
+  }
+
+  .mx-#{$value} {
+    margin-left: #{$value}px;
+    margin-right: #{$value}px;
+  }
+
+  .my-#{$value} {
+    margin-top: #{$value}px;
+    margin-bottom: #{$value}px;
+  }
+}
