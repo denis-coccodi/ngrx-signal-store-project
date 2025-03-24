@@ -5,7 +5,7 @@ import { getCachedValue, LocalStorageKeys } from '@shared-utils';
 import { Bmi, BmiApi, Notifications } from '@types-lib';
 import { SnackNotificationsDialogService } from '@ui-lib/services';
 import { PIMS_ENVIRONMENT, PIMSEnvironment } from 'environments';
-import { catchError, Observable, of } from 'rxjs';
+import { catchError, delay, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -53,7 +53,7 @@ export class UserBMIService {
 
   private _getBmiData = (
     queryParams: BmiApi.UserBiometricsQueryParams
-  ): Observable<BmiApi.UserBiometricsResponse> => of(BMI_GET_API_PROJECT_MOCK);
+  ): Observable<BmiApi.UserBiometricsResponse> => of(BMI_GET_API_PROJECT_MOCK).pipe(delay(1000));
 
   getBmiData(
     userId: number,

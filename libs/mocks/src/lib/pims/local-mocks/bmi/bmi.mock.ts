@@ -200,7 +200,7 @@ export const BMI_GET_API_PROJECT_MOCK: BmiApi.UserBiometricsResponse = {
         bmi: 14.8,
         note: undefined,
         is_active: 1,
-        created: '2025-03-18T10:57:18.000000Z',
+        created: '2025-03-15T10:57:18.000000Z',
         modified: '2025-03-21T14:46:18.000000Z',
         modified_by: {
           user_id: 11,
@@ -248,11 +248,11 @@ export const BMI_GET_API_PROJECT_MOCK: BmiApi.UserBiometricsResponse = {
         },
         height: 193,
         weight: 65,
-        five_percent_weight_check: -35,
+        five_percent_weight_check: undefined,
         bmi: 17.5,
         note: undefined,
         is_active: 1,
-        created: '2023-08-22T07:56:44.000000Z',
+        created: '2024-12-22T07:56:44.000000Z',
         modified: undefined,
         modified_by: undefined
       },

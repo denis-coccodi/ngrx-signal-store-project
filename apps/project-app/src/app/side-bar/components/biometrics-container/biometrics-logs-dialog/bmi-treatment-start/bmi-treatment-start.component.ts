@@ -112,7 +112,7 @@ export class BmiTreatmentStartComponent {
           this.bmiTreatmentStartForm().reset();
           this.editMode.update(() => false);
         }
-      }
+      }, {allowSignalWrites: true}
     );
 
     effect(() => {
