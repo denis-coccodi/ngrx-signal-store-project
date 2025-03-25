@@ -3,7 +3,11 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx serve project-app"
+    "start": "nx serve project-app",
+    "test": "nx run-many --target=test --projects=ui-core,shared-utils,project-app",
+    "test:project-app": "nx test project-app",
+    "test:ui-core": "nx test ui-core",
+    "test:shared-utils": "nx test shared-utils"
   },
   "private": true,
   "dependencies": {

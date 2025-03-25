@@ -59,7 +59,6 @@ describe('BMIDialogComponent', () => {
       bmiListOptions: {
         ...(signal(BMI_STORE_MOCK.bmiListOptions) as any),
       } as any,
-      bmiItemEntities: signal(mockBmiList),
       sortedAndFilteredBmiList: signal(mockBmiList),
       isLoadBmiDataPending: signal(false),
       isLoadBmiDataFulfilled: signal(true),
