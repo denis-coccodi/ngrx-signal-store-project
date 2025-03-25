@@ -204,7 +204,7 @@ export const updateBmiItem = (
                         store.treatmentDetails.start_date(),
                         treatmentStartWeight,
                         bmiItem.created,
-                        bmiItem.weight
+                        newMetricWeight
                       ),
                       editMode: false,
                     }),

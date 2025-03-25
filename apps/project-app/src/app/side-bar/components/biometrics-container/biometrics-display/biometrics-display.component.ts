@@ -16,7 +16,7 @@ export class BiometricsDisplayComponent {
   @Input({ required: true }) userId!: number;
   @Input() visitId?: number;
   @Input() showLogsButton = true;
-  @Output() viewLogsClick = new EventEmitter<MouseEvent>();
+  @Output() viewLogsClick = new EventEmitter<Event>();
 
   readonly store = inject(BmiStore);
 
@@ -35,7 +35,7 @@ export class BiometricsDisplayComponent {
     () => !!this.latestBmiItem() && !Object.values(this.latestBmiItem() as BmiApi.UserBMI).every(val => !val),
   );
 
-  onViewLogsClick(e: MouseEvent) {
+  onViewLogsClick(e: Event) {
     this.viewLogsClick.emit(e);
   }
 }

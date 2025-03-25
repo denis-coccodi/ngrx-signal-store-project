@@ -4,6 +4,7 @@
 		@for (selector of data.selectors; track selector.id) {
 		<button
 			(mouseup)="data.onClickFunction(selector.id); data.selected = selector.id"
+			(keyup.enter)="data.onClickFunction(selector.id); data.selected = selector.id"
 			class="selector"
 			[ngClass]="{ selected: data.selected === selector.id }"
 		>
